@@ -2,22 +2,25 @@
  * @param {string} s
  * @return {number}
  */
- var countSubstrings = function(s) {
-    const n = s.length;
-    let f = Array.from(new Array(n+1),()=>new Array(n+1).fill(0));
-    for (let i=0;i<n;i++) {
-        f[i][0] = 1;
-        f[i][1] = 1;
-    }
-    let ret = 0;
-    for (let i=0;i<n;i++) {
-        let t = 0;
-        for (let j=2;j<=i+1;j++) {
-            if (s[i]===s[i-j+1])
-                f[i][j] += f[i-1][j-2];
-                t += f[i][j];
+var countSubstrings = function(s) {
+    const n = s.length
+    const f = Array.from(new Array(n), ()=>new Array(n).fill(0))
+    let ret = 0
+    for (let i=0; i<n; i++) {
+        f[i][i] = 1
+        ret++
+        if (i+1<n && s[i]===s[i+1]) {
+            f[i][i+1] = 1
+            ret++
         }
-        ret = ret + t + 1;
     }
-    return ret;
+    for (let k=3; k<=n; k++) {
+        for (let i=0; i+k-1<n; i++) {
+            if (s[i]===s[i+k-1]) {
+                f[i][i+k-1] = f[i+1][i+k-2]
+                ret+= f[i][i+k-1]
+            }
+        }
+    }
+    return ret
 };

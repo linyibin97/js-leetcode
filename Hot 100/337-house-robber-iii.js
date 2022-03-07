@@ -32,3 +32,16 @@
     dfs(root);
     return root.max;
 };
+
+
+var rob = function(root) {
+    return Math.max(...dfs(root))
+    function dfs(node) {
+        if (node===null) return [0, 0]
+        let l = dfs(node.left)
+        let r = dfs(node.right)
+        let take = node.val + l[1] + r[1]
+        let donttake = Math.max(l[0],l[1]) + Math.max(r[0],r[1])
+        return [take, donttake]
+    }
+};

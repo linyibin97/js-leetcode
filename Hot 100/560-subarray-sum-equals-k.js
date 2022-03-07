@@ -3,6 +3,21 @@
  * @param {number} k
  * @return {number}
  */
+
+var subarraySum = function(nums, k) {
+    let f = new Map()
+    let sum = 0
+    let ret = 0
+    f.set(0, 1)
+    for (i of nums) {
+        sum += i
+        ret += f.get(sum-k) || 0
+        f.set(sum,(f.get(sum) || 0) + 1)
+    }
+    return ret
+};
+
+ 
  var subarraySum = function(nums, k) {
     const count = function(a,j) {
         let ret = 0;
@@ -32,16 +47,3 @@
     return result;
 };
 
-var subarraySum = function(nums, k) {
-    const n = nums.length;
-    let summap = new Map();
-    summap.set(0,1);
-    let result = 0, sum = 0;
-    for (let i=0;i<n;i++) {
-        sum += nums[i];
-        if (summap.has(sum-k)) 
-            result += summap.get(sum-k);
-        summap.set(sum,(summap.get(sum)||0)+1);
-    }
-    return result;
-};

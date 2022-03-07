@@ -17,3 +17,22 @@
         }
     return f[m][n];
 };
+
+var minDistance = function(word1, word2) {
+    const n = word1.length
+    const m = word2.length
+    let f = Array.from(new Array(n+1), ()=>new Array(m+1).fill(Infinity))
+    for (let i=1; i<=n; i++) f[i][0] = i
+    for (let j=1; j<=m; j++) f[0][j] = j
+    f[0][0] = 0
+    for (let i=1; i<=n; i++) {
+        for (let j=1; j<=m; j++) {
+            f[i][j] = Math.min(
+                f[i][j-1] + 1,
+                f[i-1][j] + 1,
+                f[i-1][j-1] + (word1[i-1]===word2[j-1]? 0 : 1)
+            )
+        }
+    }
+    return f[n][m]
+}

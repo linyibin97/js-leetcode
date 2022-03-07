@@ -57,3 +57,33 @@ var decodeString = function(s) {
     }
     return unfold(0);
 }
+
+
+
+var decodeString = function(s) {
+    let ret = ""
+    let i = 0
+    while (i<s.length) {
+        if ('0'<=s[i] && s[i]<='9') {
+            let num = ""
+            while ('0'<=s[i] && s[i]<='9') {
+                num = num + s[i]
+                i++
+            }
+            num = parseInt(num)
+            let j = i + 1
+            let k = 1
+            while (j<s.length && k>0) {
+                k += s[j]==='['
+                k -= s[j]===']'
+                j++
+            }
+            ret += decodeString(s.slice(i+1,j-1)).repeat(num)
+            i = j
+        } else {
+            ret += s[i]
+            i++
+        }
+    }
+    return ret
+};

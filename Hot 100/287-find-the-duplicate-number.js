@@ -24,3 +24,17 @@
     }
     return (l);
 };
+
+
+var findDuplicate = function(nums) {
+    let l = 1
+    let r = nums.length-1
+    while (l<=r) {
+        let count = 0
+        let m = ((l+r)>>1)
+        nums.forEach((v)=>count+=(v<=m))
+        if (count>m) r = m - 1
+            else l = m + 1
+    }
+    return l
+};

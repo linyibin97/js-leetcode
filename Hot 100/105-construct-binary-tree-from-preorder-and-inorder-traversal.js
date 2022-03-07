@@ -23,3 +23,14 @@
     }
     return build(0,0,preorder.length);
 };
+
+var buildTree = function(preorder, inorder) {
+    if (inorder.length===0) return null
+    if (inorder.length===1) return new TreeNode(preorder[0])
+    const inorderRoot = inorder.indexOf(preorder[0])
+    return new TreeNode(
+        preorder[0],
+        buildTree(preorder.slice(1,1+inorderRoot), inorder.slice(0,inorderRoot)),
+        buildTree(preorder.slice(1+inorderRoot), inorder.slice(inorderRoot+1))
+    )
+};

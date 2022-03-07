@@ -26,3 +26,12 @@
     }
     return new TreeNode(val,mergeTrees(l1,l2),mergeTrees(r1,r2));
 };
+
+var mergeTrees = function(root1, root2) {
+    if (root1===null && root2===null) return null
+    return new TreeNode(
+        (root1!==null? root1.val : 0) + (root2!==null? root2.val : 0),
+        mergeTrees(root1!==null? root1.left : null, root2!==null? root2.left : null),
+        mergeTrees(root1!==null? root1.right : null, root2!==null? root2.right : null)
+    )
+};

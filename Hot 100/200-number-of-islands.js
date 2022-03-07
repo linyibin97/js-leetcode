@@ -25,3 +25,27 @@
             }
     return result;
 };
+
+
+var numIslands = function(grid) {
+    const n = grid.length
+    const m = grid[0].length
+    let count = 0
+    const dfs = function(x,y) {
+        if (x<0 || y<0 || x>=n || y>=m || grid[x][y]==="0") return
+        grid[x][y]="0"
+        dfs(x+1,y)
+        dfs(x,y+1)
+        dfs(x-1,y)
+        dfs(x,y-1)
+    }
+    for (let i=0; i<n; i++) {
+        for (let j=0; j<m; j++) {
+            if (grid[i][j]==="1") {
+                count++
+                dfs(i,j)
+            }
+        }
+    }
+    return count
+};

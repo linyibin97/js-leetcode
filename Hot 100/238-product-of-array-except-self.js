@@ -2,23 +2,6 @@
  * @param {number[]} nums
  * @return {number[]}
  */
- var productExceptSelf = function(nums) {
-    const n = nums.length;
-    let all = 1;
-    let zeroscount = 0;
-    for (let i=0;i<n;i++) 
-        if (nums[i]!==0) all=all*nums[i];
-            else zeroscount++;
-    if (zeroscount>=2) all = 0;
-    let result = [];
-    for (let i=0;i<n;i++)
-        if (nums[i]===0) result.push(all)
-            else if (zeroscount>0) {
-                result.push(0);
-            } else result.push(all/nums[i]);
-    return result;
-};
-
 var productExceptSelf = function(nums) {
     const n = nums.length;
     let l = new Array(n).fill(0);
@@ -32,4 +15,17 @@ var productExceptSelf = function(nums) {
     let result = new Array(n).fill(0);
     for (let i=0;i<n;i++) result[i]=l[i-1]*r[i+1];
     return result;
+};
+
+var productExceptSelf = function(nums) {
+    const n = nums.length
+    const ret = new Array(n).fill(0)
+    for (let i=0; i<n; i++) {
+        ret[i] = i===0? 1 : nums[i-1]*ret[i-1]
+    }
+    for (let i=n-1; i>=0; i--) {
+        nums[i] = i===n-1? nums[i] : nums[i]*nums[i+1]
+        ret[i] = i===n-1? ret[i] : ret[i]*nums[i+1]
+    }
+    return ret
 };

@@ -27,3 +27,20 @@
       l3 = newl3;
     }
   };
+
+  var addTwoNumbers = function(l1, l2) {
+    let c = 0 //进位
+    let ret = new ListNode()
+    let prev = ret
+    while (l1!==null || l2!==null || c!==0) {
+        let s = c
+        if (l1!==null) s+= l1.val
+        if (l2!==null) s+= l2.val
+        c = Math.floor(s / 10)
+        prev.next = new ListNode(s % 10)
+        prev = prev.next
+        if (l1!==null) l1 = l1.next
+        if (l2!==null) l2 = l2.next
+    }
+    return ret.next
+};

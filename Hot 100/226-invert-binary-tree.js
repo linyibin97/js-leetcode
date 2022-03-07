@@ -19,3 +19,18 @@ var invertTree = function(root) {
     invertTree(root.right);
     return root;
 };
+
+var invertTree = function(root) {
+    if (root===null) return null
+    let nodes = [root]
+    while (nodes.length>0) {
+        let next = []
+        for (let i=0; i<nodes.length; i++) {
+            [nodes[i].left, nodes[i].right] = [nodes[i].right, nodes[i].left]
+            if (nodes[i].left!==null) next.push(nodes[i].left)
+            if (nodes[i].right!==null) next.push(nodes[i].right)
+        }
+        nodes = next
+    }
+    return root
+};

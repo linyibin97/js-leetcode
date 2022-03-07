@@ -20,3 +20,36 @@
     return true;
 };
 
+
+var isPalindrome = function(head) {
+    if (head===null) return true
+    let mid = findMid(head)
+    mid = reverseList(mid.next)
+    while (mid!==null && head!==null) {
+        if (mid.val!==head.val) return false
+        mid = mid.next
+        head = head.next
+    }
+    return true
+
+    function findMid(head) {
+        let slow = head
+        let fast = head
+        while (fast.next!==null && fast.next.next!==null) {
+            slow = slow.next
+            fast = fast.next.next
+        }
+        return slow
+    }
+    function reverseList(head) {
+        let curr = head
+        let prev = null
+        while (curr!==null) {
+            let next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        }
+        return prev
+    }
+};

@@ -23,3 +23,20 @@
     rec[rec.length-n-1].next = rec[rec.length-n].next;
     return head;
 };
+
+var removeNthFromEnd = function(head, n) {
+    if (head===null) return head
+    let fast = new ListNode(0,head)
+    let slow = new ListNode(0,head)
+    let ret = slow
+    while (n>0) {
+        fast = fast.next
+        n--
+    }
+    while (fast.next) {
+        fast = fast.next
+        slow = slow.next
+    }
+    slow.next = slow.next.next
+    return ret.next
+};

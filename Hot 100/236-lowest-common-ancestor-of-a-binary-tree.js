@@ -34,3 +34,16 @@
     findq(root);
     return result;
 };
+
+var lowestCommonAncestor = function(root, p, q) {
+    let res = null
+    dfs(root)
+    return res
+    function dfs(node) {
+        if (node===null) return false
+        let l = dfs(node.left)
+        let r = dfs(node.right)
+        if ((l && r) || ((node===p || node===q)&&(l || r))) res = node
+        return l || r || node===p || node===q
+    }
+}

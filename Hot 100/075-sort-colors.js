@@ -19,3 +19,20 @@
 };
 
 sortColors([1,2,0]);
+
+
+var sortColors = function(nums) {
+    const n = nums.length
+    let l = 0
+    let r = n-1
+    for (let i=0; i<=r; i++) {
+        while ((nums[i]===2)&&(i<r)) {
+            [nums[i],nums[r]] = [nums[r],nums[i]]
+            r--
+        }
+        if (nums[i]===0) {
+            [nums[i],nums[l]] = [nums[l],nums[i]]
+            l++
+        }
+    }
+};

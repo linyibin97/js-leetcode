@@ -22,3 +22,13 @@
     }
     return result;
 };
+
+
+var topKFrequent = function(nums, k) {
+    let f = new Map()
+    for (let i of nums) {
+        if (f.has(i)) f.set(i,f.get(i)+1)
+            else f.set(i,1)
+    }
+    return [...f].sort((a,b)=>b[1]-a[1]).map((v)=>v[0]).slice(0,k)
+};

@@ -20,3 +20,12 @@
     }
     return f;
 };
+
+
+var countBits = function(n) {
+    const ret = [0]
+    for (let i=1; i<=n; i++) {
+        ret.push(ret[i>>1] + (i & 1) )
+    }
+    return ret
+};

@@ -23,3 +23,15 @@
     }
     return null;
 };
+
+
+var getIntersectionNode = function(headA, headB) {
+    if (headA===null || headB===null) return null
+    let pa = headA
+    let pb = headB
+    while (pa!==pb) {
+        pa = pa===null? headB : pa.next
+        pb = pb===null? headA : pb.next
+    }
+    return pa
+};

@@ -34,3 +34,25 @@
     dfs(root);
     return result;
 };
+
+
+var maxPathSum = function(root) {
+    let ret = -Infinity
+    const dfs = function(node) {
+        let val = node.val
+        if (node.left!==null) {
+            dfs(node.left)
+            node.val = Math.max(node.val, val+node.left.val)
+        }
+        if (node.right!==null) {
+            dfs(node.right)
+            node.val = Math.max(node.val, val+node.right.val)
+        }
+        if (node.left!==null && node.right!==null) {
+            ret = Math.max(ret, val+node.left.val+node.right.val)
+        }
+        ret = Math.max(ret, node.val)
+    }
+    dfs(root)
+    return ret
+};
