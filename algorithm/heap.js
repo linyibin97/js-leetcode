@@ -28,10 +28,9 @@ class Heap {
   shiftDown (index) {
     const leftIndex = this.getLeftIndex(index)
     const rightIndex = this.getRightIndex(index)
-    let nextIndex
-    if(this.heap[leftIndex]) nextIndex = this.cmp(this.heap[leftIndex], this.heap[index]) ? leftIndex : index
-    if(this.heap[rightIndex]) nextIndex = this.cmp(this.heap[rightIndex], this.heap[nextIndex]) ? rightIndex : nextIndex
-    if (!nextIndex) return
+    let nextIndex = index
+    if (this.cmp(this.heap[leftIndex],this.heap[nextIndex])) nextIndex = leftIndex
+    if (this.cmp(this.heap[rightIndex],this.heap[nextIndex])) nextIndex = rightIndex   
     if (index !== nextIndex) {
       this.swap(index, nextIndex)
       this.shiftDown(nextIndex)
