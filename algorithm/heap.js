@@ -59,9 +59,15 @@ class Heap {
 }
 
 
-let a = new Heap()
+let a = new Heap((a,b)=>a>b)
 a.insert(2)
 a.insert(5)
 a.insert(-2)
 a.insert(-1)
+console.log(a.peek())
+a.pop()
+console.log(a.peek())
+a.pop()
+console.log(a.peek())
+a.pop()
 console.log(a.peek())
